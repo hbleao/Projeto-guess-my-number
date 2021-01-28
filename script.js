@@ -1,9 +1,9 @@
 'use strict';
 
-const chances = 4;
+let chances = 4;
 let score = chances;
 let highScore = 0;
-const secretNumber = Math.trunc(Math.random()*20) + 1;
+let secretNumber = Math.trunc(Math.random()*20) + 1;
 document.querySelector('.score').textContent = score;
 
 document.querySelector('.check').addEventListener('click', handleInputNumber);
@@ -55,7 +55,7 @@ function decreasesScore () {
 }
 
 function handleResetStatesPage() {
-  const color = '#222';
+  let color = '#222';
   score = chances;
   secretNumber = Math.trunc(Math.random()*20) + 1;
   document.querySelector('main').style.backgroundColor = color;
