@@ -6,18 +6,15 @@ let highScore = 0;
 const secretNumber = Math.trunc(Math.random()*20) + 1;
 document.querySelector('.score').textContent = score;
 
-document.querySelector('.check').addEventListener('click', compareInputAndSecretNumber);
+document.querySelector('.check').addEventListener('click', handleInputNumber);
 document.querySelector('body').addEventListener('keydown', handleClickEnter);
 document.querySelector('.again').addEventListener('click', handleResetStatesPage);
 
 function handleInputNumber() {
   const guess = Number(document.querySelector('.guess').value);
   if(!guess) document.querySelector('.message').textContent = '⛔️ No number';
-  handleCompareInput(guess);
-};
 
-function handleCompareInput(number) {
-  if(secretNumber === number) {
+  if(secretNumber === guess) {
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.message').textContent = '🍕 Correct Number';
     handleChangeColor('#3dd30c');
@@ -27,20 +24,20 @@ function handleCompareInput(number) {
     }
   }
 
-  if(number > secretNumber) {
+  if(guess > secretNumber) {
     document.querySelector('.message').textContent = '😙 too high!';
     decreasesScore();
   }
 
-  if(number < secretNumber && number > 0) {
+  if(guess < secretNumber && guess > 0) {
     document.querySelector('.message').textContent = '😙 too low!';
     decreasesScore();
   }
-}
+};
 
 function handleClickEnter(event) {
   if(event.key === 'Enter') {
-    handleValueInput();
+    handleInputNumber();
   }
 };
 
